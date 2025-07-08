@@ -3,41 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KarmaENT | Street Art Coder</title>
+    <title>KARMAENT || DEGEN ANARCHIST HUSTLER</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;700;900&family=Stencil+Std&display=swap" rel="stylesheet">
     <style>
         :root {
-            --concrete: #2c2c2c;
-            --brick: #8B4513;
-            --graffiti-blue: #1e90ff;
-            --spray-pink: #ff1493;
-            --tag-yellow: #ffd700;
-            --stencil-white: #f0f0f0;
-            --stencil-black: #0a0a0a;
-            --grunge-border: #5a5a5a;
+            --void-black: #050505;
+            --matrix-green: #0aff0a;
+            --glitch-pink: #ff00c8;
+            --crypto-blue: #00c8ff;
+            --blood-red: #ff003c;
+            --terminal-gray: #121212;
+            --hacker-purple: #8a2be2;
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Courier New', monospace;
         }
         
         body {
             background: 
-                radial-gradient(circle at 10% 20%, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 20%),
-                linear-gradient(135deg, var(--concrete) 0%, #1a1a1a 100%),
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%232c2c2c"/><path d="M0 0L100 100M100 0L0 100" stroke="%233a3a3a" stroke-width="1"/></svg>');
-            color: var(--stencil-white);
-            font-family: 'Urbanist', sans-serif;
+                radial-gradient(circle at 10% 20%, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 40%),
+                linear-gradient(to bottom, #000, #050505, #000),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23050a0f"/><path d="M0 0L100 100M100 0L0 100" stroke="%230d1218" stroke-width="1.5"/></svg>');
+            color: var(--matrix-green);
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
             line-height: 1.6;
         }
         
-        /* Grunge effects */
+        /* Glitch effect overlay */
         body::before {
             content: "";
             position: fixed;
@@ -45,35 +43,119 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"><filter id="grunge"><feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="5" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="10" xChannelSelector="R" yChannelSelector="G"/></filter><rect width="100%" height="100%" filter="url(%23grunge)" fill-opacity="0.05"/></svg>');
-            opacity: 0.3;
+            background: 
+                linear-gradient(rgba(10, 255, 10, 0.02), transparent 8px),
+                linear-gradient(90deg, rgba(255, 0, 200, 0.02), transparent 8px);
+            background-size: 16px 16px;
+            opacity: 0.1;
             pointer-events: none;
-            z-index: 100;
+            z-index: 1000;
         }
         
-        /* Header & Navigation */
+        /* Scanline effect */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                to bottom,
+                transparent 0%,
+                rgba(10, 255, 10, 0.05) 0.5%,
+                transparent 1%
+            );
+            animation: scanline 8s linear infinite;
+            pointer-events: none;
+            z-index: 1001;
+        }
+        
+        @keyframes scanline {
+            0% { transform: translateY(0%); }
+            100% { transform: translateY(100%); }
+        }
+        
+        /* Terminal cursor */
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 16px;
+            background: var(--matrix-green);
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        /* Header */
         header {
             padding: 1.5rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background: rgba(5, 5, 5, 0.8);
+            border-bottom: 1px solid var(--matrix-green);
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(10, 10, 10, 0.85);
-            border-bottom: 3px solid var(--grunge-border);
         }
         
         .logo {
-            font-family: 'Stencil Std', sans-serif;
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             font-weight: 700;
-            color: var(--stencil-white);
-            text-shadow: 3px 3px 0 var(--stencil-black);
-            letter-spacing: 2px;
+            text-shadow: 0 0 10px var(--matrix-green);
             position: relative;
-            padding: 0.5rem 1rem;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="40" viewBox="0 0 100 40"><rect x="5" y="5" width="90" height="30" fill="none" stroke="%23ff1493" stroke-width="2" stroke-dasharray="5,3"/></svg>') no-repeat;
+            animation: glitch 3s infinite;
+        }
+        
+        .logo::before, .logo::after {
+            content: "KARMAENT";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .logo::before {
+            color: var(--glitch-pink);
+            animation: glitch-before 4s infinite;
+            clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+        }
+        
+        .logo::after {
+            color: var(--crypto-blue);
+            animation: glitch-after 5s infinite;
+            clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+        }
+        
+        @keyframes glitch {
+            0%, 100% { transform: translateX(0); }
+            20% { transform: translateX(-3px); }
+            40% { transform: translateX(3px); }
+            60% { transform: translateX(-3px); }
+            80% { transform: translateX(3px); }
+        }
+        
+        @keyframes glitch-before {
+            0%, 100% { transform: translateX(0); }
+            10% { transform: translateX(-3px); }
+            30% { transform: translateX(3px); }
+            50% { transform: translateX(-3px); }
+            70% { transform: translateX(3px); }
+            90% { transform: translateX(-3px); }
+        }
+        
+        @keyframes glitch-after {
+            0%, 100% { transform: translateX(0); }
+            5% { transform: translateX(2px); }
+            25% { transform: translateX(-2px); }
+            45% { transform: translateX(2px); }
+            65% { transform: translateX(-2px); }
+            85% { transform: translateX(2px); }
         }
         
         .nav-links {
@@ -82,10 +164,9 @@
         }
         
         .nav-links a {
-            color: var(--stencil-white);
+            color: var(--matrix-green);
             text-decoration: none;
             font-size: 1.1rem;
-            font-weight: 700;
             position: relative;
             padding: 0.5rem 0;
             transition: all 0.3s ease;
@@ -98,20 +179,19 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--spray-pink);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s ease;
+            width: 0;
+            height: 2px;
+            background: var(--matrix-green);
+            transition: width 0.3s ease;
         }
         
         .nav-links a:hover {
-            color: var(--spray-pink);
+            color: var(--crypto-blue);
+            text-shadow: 0 0 10px var(--crypto-blue);
         }
         
         .nav-links a:hover::after {
-            transform: scaleX(1);
+            width: 100%;
         }
         
         /* Hero Section */
@@ -124,6 +204,7 @@
             padding: 0 5%;
             position: relative;
             text-align: center;
+            overflow: hidden;
         }
         
         .hero-content {
@@ -132,76 +213,95 @@
             position: relative;
         }
         
-        .stencil-title {
-            font-family: 'Stencil Std', sans-serif;
-            font-size: 5rem;
-            margin-bottom: 1rem;
-            color: var(--stencil-white);
-            text-shadow: 5px 5px 0 var(--stencil-black);
-            position: relative;
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
             text-transform: uppercase;
             letter-spacing: 3px;
+            text-shadow: 0 0 20px var(--matrix-green);
+            animation: textGlow 3s infinite alternate;
         }
         
-        .stencil-subtitle {
-            font-family: 'Stencil Std', sans-serif;
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: var(--tag-yellow);
-            text-shadow: 3px 3px 0 var(--stencil-black);
-            position: relative;
+        @keyframes textGlow {
+            0% { text-shadow: 0 0 10px var(--matrix-green); }
+            100% { text-shadow: 0 0 30px var(--matrix-green), 0 0 60px var(--crypto-blue); }
         }
         
-        .hero p {
-            font-size: 1.3rem;
-            max-width: 700px;
-            margin: 0 auto 2.5rem;
-            background: rgba(10, 10, 10, 0.7);
-            padding: 1.5rem;
-            border-left: 3px solid var(--spray-pink);
-            position: relative;
+        .hero h1 span {
+            color: var(--blood-red);
+            text-shadow: 0 0 15px var(--blood-red);
+        }
+        
+        .terminal-container {
+            background: rgba(10, 10, 10, 0.8);
+            border: 1px solid var(--matrix-green);
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 800px;
             text-align: left;
+            box-shadow: 0 0 30px rgba(10, 255, 10, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .terminal-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            color: var(--matrix-green);
+            border-bottom: 1px solid var(--matrix-green);
+            padding-bottom: 0.5rem;
+        }
+        
+        .terminal-body {
+            font-size: 1.1rem;
             line-height: 1.8;
         }
         
-        .hero p::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
+        .terminal-line {
+            margin-bottom: 0.8rem;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .terminal-prompt {
+            color: var(--crypto-blue);
+            margin-right: 0.5rem;
+        }
+        
+        .terminal-command {
+            color: var(--glitch-pink);
+        }
+        
+        .terminal-output {
+            color: var(--matrix-green);
+            margin-left: 2rem;
+            margin-top: 0.5rem;
             width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%23333" stroke-width="1" stroke-dasharray="5,3"/></svg>');
-            opacity: 0.3;
-            pointer-events: none;
-            z-index: -1;
         }
         
         .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-            background: linear-gradient(to right, var(--graffiti-blue), var(--spray-pink));
-            color: var(--stencil-black);
-            padding: 1.2rem 2.8rem;
-            border-radius: 0;
+            display: inline-block;
+            background: transparent;
+            color: var(--matrix-green);
+            padding: 1rem 2.5rem;
+            border: 2px solid var(--matrix-green);
             text-decoration: none;
-            font-weight: 900;
+            font-weight: 700;
             font-size: 1.2rem;
+            margin-top: 2rem;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            z-index: 1;
-            border: 3px solid var(--stencil-black);
-            box-shadow: 5px 5px 0 var(--stencil-black);
             text-transform: uppercase;
             letter-spacing: 2px;
-            font-family: 'Stencil Std', sans-serif;
         }
         
         .cta-button:hover {
+            background: var(--matrix-green);
+            color: var(--void-black);
+            box-shadow: 0 0 20px var(--matrix-green);
             transform: translateY(-5px);
-            box-shadow: 8px 8px 0 var(--stencil-black);
         }
         
         .cta-button::before {
@@ -211,289 +311,263 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(10, 255, 10, 0.3), transparent);
             transition: 0.5s;
-            z-index: -1;
         }
         
         .cta-button:hover::before {
             left: 100%;
         }
         
-        /* Graffiti Tags */
-        .graffiti-tag {
+        /* Crypto Ticker */
+        .crypto-ticker {
             position: absolute;
-            font-family: 'Urbanist', sans-serif;
-            font-weight: 900;
-            font-size: 1.8rem;
-            color: var(--tag-yellow);
-            transform: rotate(-15deg);
-            text-shadow: 2px 2px 0 var(--stencil-black);
-            opacity: 0.8;
-            z-index: 0;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            border-top: 1px solid var(--matrix-green);
+            padding: 0.8rem 0;
+            overflow: hidden;
+            white-space: nowrap;
         }
         
-        .tag-1 {
-            top: 20%;
-            left: 10%;
-            color: var(--spray-pink);
-            font-size: 2.5rem;
+        .ticker-content {
+            display: inline-block;
+            animation: ticker 30s linear infinite;
+            color: var(--crypto-blue);
+            font-size: 1.1rem;
         }
         
-        .tag-2 {
-            top: 40%;
-            right: 15%;
-            color: var(--graffiti-blue);
-            transform: rotate(10deg);
-        }
-        
-        .tag-3 {
-            bottom: 25%;
-            left: 20%;
-            color: var(--tag-yellow);
-            transform: rotate(-5deg);
-            font-size: 2.2rem;
+        @keyframes ticker {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
         }
         
         /* Projects Section */
-        .projects {
+        .section {
             padding: 8rem 5%;
             position: relative;
-            background: 
-                linear-gradient(rgba(20, 20, 20, 0.9), rgba(20, 20, 20, 0.9)),
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%232c2c2c"/><path d="M0 20 Q50 -10 100 20 L100 80 Q50 110 0 80 Z" fill="%233a3a3a" opacity="0.2"/></svg>');
-            border-top: 5px solid var(--grunge-border);
-            border-bottom: 5px solid var(--grunge-border);
+            border-top: 1px solid rgba(10, 255, 10, 0.2);
         }
         
         .section-title {
             text-align: center;
-            font-size: 3rem;
+            font-size: 2.8rem;
             margin-bottom: 5rem;
-            font-family: 'Stencil Std', sans-serif;
-            color: var(--stencil-white);
-            text-shadow: 4px 4px 0 var(--stencil-black);
-            position: relative;
             text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 15px var(--matrix-green);
         }
         
-        .section-title::after {
-            content: "";
-            display: block;
-            width: 150px;
-            height: 4px;
-            background: var(--spray-pink);
-            margin: 1rem auto 0;
+        .section-title span {
+            color: var(--blood-red);
         }
         
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
             max-width: 1400px;
             margin: 0 auto;
         }
         
         .project-card {
-            background: rgba(15, 15, 15, 0.95);
-            border: 3px solid var(--grunge-border);
+            background: rgba(10, 10, 10, 0.7);
+            border: 1px solid var(--matrix-green);
+            padding: 2.5rem;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            box-shadow: 8px 8px 0 var(--stencil-black);
-            transition: all 0.4s ease;
+            box-shadow: 0 0 20px rgba(10, 255, 10, 0.1);
         }
         
         .project-card:hover {
             transform: translateY(-10px);
-            box-shadow: 12px 12px 0 var(--stencil-black);
-            border-color: var(--spray-pink);
+            box-shadow: 0 0 40px var(--matrix-green);
+            border-color: var(--crypto-blue);
         }
         
-        .project-header {
-            height: 200px;
-            background: linear-gradient(45deg, #1a1a1a, #333);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .project-header::before {
-            content: "";
+        .project-card::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%23333" stroke-width="2" stroke-dasharray="8,4"/></svg>');
-            opacity: 0.5;
+            background: linear-gradient(45deg, 
+                transparent, 
+                rgba(10, 255, 10, 0.05),
+                transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
         
-        .project-icon {
-            font-size: 4rem;
-            color: var(--spray-pink);
-            text-shadow: 3px 3px 0 var(--stencil-black);
-            z-index: 1;
-        }
-        
-        .project-content {
-            padding: 2rem;
-            position: relative;
+        .project-card:hover::before {
+            opacity: 1;
         }
         
         .project-title {
             font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: var(--stencil-white);
-            font-family: 'Stencil Std', sans-serif;
-            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+            color: var(--crypto-blue);
+            text-transform: uppercase;
         }
         
         .project-description {
-            color: rgba(240, 240, 240, 0.85);
-            margin-bottom: 1.5rem;
+            color: var(--matrix-green);
+            margin-bottom: 1.8rem;
+            line-height: 1.8;
         }
         
         .project-tech {
             display: flex;
             flex-wrap: wrap;
             gap: 0.8rem;
-            margin-bottom: 1.8rem;
+            margin-bottom: 2rem;
         }
         
         .tech-tag {
-            background: var(--stencil-black);
-            color: var(--tag-yellow);
+            background: rgba(10, 255, 10, 0.1);
+            color: var(--matrix-green);
             padding: 0.5rem 1rem;
-            border-radius: 0;
+            border: 1px solid var(--matrix-green);
             font-size: 0.9rem;
-            font-weight: 700;
-            border: 2px solid var(--grunge-border);
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
         
         .project-link {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            color: var(--graffiti-blue);
+            color: var(--glitch-pink);
             text-decoration: none;
             font-weight: 700;
             transition: all 0.3s ease;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
         }
         
         .project-link:hover {
-            color: var(--spray-pink);
+            color: var(--blood-red);
             transform: translateX(5px);
         }
         
-        /* Spray Paint Effect */
-        .spray-can {
-            position: absolute;
-            width: 80px;
-            height: 150px;
-            bottom: 5%;
-            right: 5%;
-            z-index: 50;
-            transform: rotate(-10deg);
-            animation: wobble 3s infinite ease-in-out;
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
-        .spray-can::before {
-            content: "";
-            position: absolute;
-            width: 30px;
-            height: 120px;
-            background: linear-gradient(to bottom, #333, #000);
-            border-radius: 5px 5px 15px 15px;
-            left: 25px;
-            top: 0;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+        .skill-card {
+            background: rgba(10, 10, 10, 0.7);
+            border: 1px solid var(--matrix-green);
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
         }
         
-        .spray-can::after {
-            content: "";
-            position: absolute;
-            width: 40px;
-            height: 20px;
-            background: var(--spray-pink);
-            border-radius: 5px;
-            left: 20px;
-            top: -15px;
+        .skill-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px var(--matrix-green);
+            border-color: var(--glitch-pink);
         }
         
-        @keyframes wobble {
-            0%, 100% { transform: rotate(-10deg); }
-            50% { transform: rotate(-15deg); }
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--crypto-blue);
+        }
+        
+        .skill-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--matrix-green);
+            text-transform: uppercase;
+        }
+        
+        .skill-description {
+            color: var(--matrix-green);
+            line-height: 1.8;
         }
         
         /* Contact Section */
-        .contact {
-            padding: 8rem 5%;
-            position: relative;
-            background: rgba(10, 10, 10, 0.95);
-        }
-        
-        .contact-container {
-            max-width: 1000px;
+        .contact-form {
+            max-width: 600px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        
-        .contact-info {
-            background: rgba(20, 20, 20, 0.9);
-            border: 3px solid var(--grunge-border);
+            background: rgba(10, 10, 10, 0.7);
+            border: 1px solid var(--matrix-green);
             padding: 3rem;
-            position: relative;
-            box-shadow: 8px 8px 0 var(--stencil-black);
+            box-shadow: 0 0 30px rgba(10, 255, 10, 0.1);
         }
         
-        .contact-title {
-            font-size: 2.2rem;
-            margin-bottom: 2rem;
-            color: var(--stencil-white);
-            font-family: 'Stencil Std', sans-serif;
-            text-shadow: 3px 3px 0 var(--stencil-black);
-            letter-spacing: 1px;
-        }
-        
-        .contact-detail {
-            display: flex;
-            align-items: center;
-            gap: 1.2rem;
+        .form-group {
             margin-bottom: 1.8rem;
         }
         
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--stencil-black);
-            border-radius: 0;
-            color: var(--spray-pink);
-            font-size: 1.3rem;
-            border: 2px solid var(--grunge-border);
+        .form-label {
+            display: block;
+            margin-bottom: 0.8rem;
+            color: var(--matrix-green);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
-        .contact-text {
+        .form-input {
+            width: 100%;
+            background: transparent;
+            border: 1px solid var(--matrix-green);
+            padding: 1rem;
+            color: var(--matrix-green);
             font-size: 1.1rem;
-            color: rgba(240, 240, 240, 0.9);
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--crypto-blue);
+            box-shadow: 0 0 10px var(--crypto-blue);
+        }
+        
+        textarea.form-input {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-button {
+            background: transparent;
+            color: var(--matrix-green);
+            padding: 1rem 2.5rem;
+            border: 2px solid var(--matrix-green);
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            width: 100%;
+        }
+        
+        .submit-button:hover {
+            background: var(--matrix-green);
+            color: var(--void-black);
+            box-shadow: 0 0 20px var(--matrix-green);
+        }
+        
+        /* Footer */
+        footer {
+            background: rgba(5, 5, 5, 0.9);
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 1px solid var(--matrix-green);
+            position: relative;
         }
         
         .social-links {
             display: flex;
-            gap: 1.2rem;
-            margin-top: 2.5rem;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
         }
         
         .social-link {
@@ -502,331 +576,402 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--stencil-black);
-            border-radius: 0;
-            color: var(--graffiti-blue);
-            font-size: 1.4rem;
+            border: 1px solid var(--matrix-green);
+            color: var(--matrix-green);
+            font-size: 1.5rem;
             text-decoration: none;
             transition: all 0.3s ease;
-            border: 2px solid var(--grunge-border);
         }
         
         .social-link:hover {
-            background: var(--graffiti-blue);
-            color: var(--stencil-black);
+            background: var(--matrix-green);
+            color: var(--void-black);
             transform: translateY(-5px);
         }
         
-        /* Footer */
-        footer {
-            background: var(--stencil-black);
-            padding: 3rem 5%;
-            text-align: center;
-            border-top: 3px solid var(--grunge-border);
-            position: relative;
-        }
-        
-        .footer-logo {
-            font-family: 'Stencil Std', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: var(--stencil-white);
-            text-shadow: 3px 3px 0 var(--grunge-border);
-            margin-bottom: 1.5rem;
-        }
-        
         .copyright {
-            color: rgba(240, 240, 240, 0.6);
+            color: var(--matrix-green);
             font-size: 1rem;
             margin-top: 2rem;
         }
         
-        .footer-tag {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            font-family: 'Urbanist', sans-serif;
-            font-weight: 900;
-            font-size: 1.5rem;
-            color: var(--tag-yellow);
-            transform: rotate(-10deg);
-            opacity: 0.7;
+        /* Hacker Terminal Effect */
+        .hacker-terminal {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            border-top: 2px solid var(--matrix-green);
+            padding: 1rem;
+            z-index: 200;
+            display: none;
         }
         
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .stencil-title {
-                font-size: 3.5rem;
-            }
-            
-            .stencil-subtitle {
-                font-size: 2rem;
-            }
+        .terminal-input {
+            background: transparent;
+            border: none;
+            color: var(--matrix-green);
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            width: calc(100% - 100px);
+            padding: 0.5rem;
         }
         
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .stencil-title {
-                font-size: 2.8rem;
-            }
-            
-            .stencil-subtitle {
-                font-size: 1.8rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .section-title {
-                font-size: 2.2rem;
-            }
+        .terminal-input:focus {
+            outline: none;
+        }
+        
+        .terminal-prefix {
+            color: var(--crypto-blue);
+            margin-right: 0.5rem;
+        }
+        
+        /* Matrix Rain */
+        .matrix-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.1;
         }
     </style>
 </head>
 <body>
+    <!-- Matrix Rain Effect -->
+    <canvas class="matrix-rain" id="matrixRain"></canvas>
+    
     <!-- Header -->
     <header>
         <div class="logo">KARMAENT</div>
         <nav class="nav-links">
             <a href="#home">Home</a>
-            <a href="#projects">Projects</a>
+            <a href="#projects">Exploits</a>
+            <a href="#skills">Arsenal</a>
             <a href="#contact">Contact</a>
-            <a href="#about">About</a>
         </nav>
     </header>
     
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
-            <h1 class="stencil-title">CODE GRAFFITI</h1>
-            <h2 class="stencil-subtitle">Digital Street Art</h2>
-            <p>I'm KarmaENT - a developer who treats code like urban art. My work blends technical precision with rebellious creativity, creating digital experiences that challenge conventions and leave a lasting impression. I operate at the intersection of technology and counterculture, where every line of code is a statement.</p>
-            <a href="#projects" class="cta-button">
-                <i class="fas fa-spray-can"></i> VIEW MY WORK
-            </a>
+            <h1>DEGEN <span>ANARCHIST</span> HUSTLER</h1>
+            <div class="terminal-container">
+                <div class="terminal-header">
+                    <div>KARMAENT@ROOT:~</div>
+                    <div>ACCESS: <span style="color: var(--crypto-blue);">GRANTED</span></div>
+                </div>
+                <div class="terminal-body">
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">user@karmaent:~$</span>
+                        <span class="terminal-command">whoami</span>
+                    </div>
+                    <div class="terminal-output">
+                        > DEGEN PROTOCOL ACTIVATED<br>
+                        > ANARCHIST FRAMEWORK LOADED<br>
+                        > HUSTLER ENGINE ONLINE<br>
+                        > SYSTEMS: READY FOR EXPLOITATION
+                    </div>
+                    
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">user@karmaent:~$</span>
+                        <span class="terminal-command">cat manifesto.txt</span>
+                    </div>
+                    <div class="terminal-output">
+                        > BREAK SYSTEMS. BUILD WEALTH.<br>
+                        > EXPLOIT EVERY VULNERABILITY.<br>
+                        > DECENTRALIZE ALL POWER STRUCTURES.<br>
+                        > PROFIT IS THE ULTIMATE ANARCHY.
+                    </div>
+                    
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">user@karmaent:~$</span>
+                        <span class="terminal-command">status --revenue</span>
+                    </div>
+                    <div class="terminal-output">
+                        > 2023: $2.8M EXPLOITED<br>
+                        > 2024: $4.2M EXPLOITED<br>
+                        > 2025: $7.1M PROJECTED<br>
+                        > PROFIT MARGIN: 98.7%<br>
+                        > SYSTEMS COMPROMISED: 47
+                    </div>
+                    
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">user@karmaent:~$</span>
+                        <span class="terminal-command"><span class="cursor"></span></span>
+                    </div>
+                </div>
+            </div>
+            <a href="#projects" class="cta-button">ACCESS EXPLOITS</a>
         </div>
         
-        <!-- Graffiti Tags -->
-        <div class="graffiti-tag tag-1">REBEL CODE</div>
-        <div class="graffiti-tag tag-2">TECH ANARCHY</div>
-        <div class="graffiti-tag tag-3">DIGITAL VANDAL</div>
-        
-        <!-- Spray Paint Can -->
-        <div class="spray-can"></div>
+        <!-- Crypto Ticker -->
+        <div class="crypto-ticker">
+            <div class="ticker-content">
+                >> ETH $3,842.21 (+2.4%) | BTC $68,921.50 (+1.8%) | SOL $172.34 (+5.2%) | 
+                DARKNET INDEX ▲ 4.3% | EXPLOIT MARKET ▲ 7.1% | 
+                BLACK MARKET CAP: $12.4B | 0-DAYS: 47 ACTIVE | 
+                GOVERNMENT SYSTEMS COMPROMISED: 12 | 
+                NEXT EXPLOIT LAUNCH: T-12:47:33 <<
+            </div>
+        </div>
     </section>
     
     <!-- Projects Section -->
-    <section class="projects" id="projects">
-        <h2 class="section-title">URBAN PROJECTS</h2>
+    <section class="section" id="projects">
+        <h2 class="section-title">ACTIVE <span>EXPLOITS</span></h2>
         <div class="projects-grid">
             <div class="project-card">
-                <div class="project-header">
-                    <i class="fas fa-city project-icon"></i>
+                <h3 class="project-title">OPERATION: BLACK ICE</h3>
+                <p class="project-description">A zero-day exploit framework targeting global financial systems. Penetrates firewalls and security protocols to reroute transactions through decentralized channels.</p>
+                <div class="project-tech">
+                    <span class="tech-tag">RUST</span>
+                    <span class="tech-tag">BLOCKCHAIN</span>
+                    <span class="tech-tag">ZKP</span>
+                    <span class="tech-tag">AI</span>
                 </div>
-                <div class="project-content">
-                    <h3 class="project-title">METROPOLIS API</h3>
-                    <p class="project-description">A decentralized API framework that mimics urban infrastructure patterns. Built for resilience and adaptability in hostile digital environments.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Node.js</span>
-                        <span class="tech-tag">Blockchain</span>
-                        <span class="tech-tag">Web3</span>
-                    </div>
-                    <a href="#" class="project-link">
-                        <i class="fas fa-spray-can"></i> View Project
-                    </a>
-                </div>
+                <a href="#" class="project-link">
+                    ACCESS EXPLOIT <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
             
             <div class="project-card">
-                <div class="project-header">
-                    <i class="fas fa-paint-roller project-icon"></i>
+                <h3 class="project-title">PROJECT: DARK POOL</h3>
+                <p class="project-description">An unregulated trading platform exploiting market inefficiencies and regulatory gaps. Generates 18-34% monthly returns through latency arbitrage and information asymmetry.</p>
+                <div class="project-tech">
+                    <span class="tech-tag">NODE.JS</span>
+                    <span class="tech-tag">WEB3</span>
+                    <span class="tech-tag">HFT</span>
+                    <span class="tech-tag">MEMPOOL</span>
                 </div>
-                <div class="project-content">
-                    <h3 class="project-title">STREET ART GENERATOR</h3>
-                    <p class="project-description">An AI-powered tool that creates digital graffiti based on user input. Uses generative adversarial networks to produce unique urban art.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">GAN</span>
-                        <span class="tech-tag">Canvas</span>
-                    </div>
-                    <a href="#" class="project-link">
-                        <i class="fas fa-spray-can"></i> View Project
-                    </a>
-                </div>
+                <a href="#" class="project-link">
+                    ACCESS EXPLOIT <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
             
             <div class="project-card">
-                <div class="project-header">
-                    <i class="fas fa-route project-icon"></i>
+                <h3 class="project-title">VENOM BOTNET</h3>
+                <p class="project-description">A distributed network of 47,000+ compromised devices performing coordinated tasks ranging from crypto mining to DDoS attacks. Generates $18K/day passively.</p>
+                <div class="project-tech">
+                    <span class="tech-tag">C++</span>
+                    <span class="tech-tag">P2P</span>
+                    <span class="tech-tag">ENCRYPTION</span>
+                    <span class="tech-tag">TOR</span>
                 </div>
-                <div class="project-content">
-                    <h3 class="project-title">UNDERGROUND ROUTER</h3>
-                    <p class="project-description">A privacy-focused routing system that mimics subway navigation patterns to obscure digital footprints and bypass surveillance.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Rust</span>
-                        <span class="tech-tag">Tor</span>
-                        <span class="tech-tag">Encryption</span>
-                    </div>
-                    <a href="#" class="project-link">
-                        <i class="fas fa-spray-can"></i> View Project
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="contact-container">
-            <div class="contact-info">
-                <h3 class="contact-title">CONTACT</h3>
-                
-                <div class="contact-detail">
-                    <div class="contact-icon">
-                        <i class="fas fa-at"></i>
-                    </div>
-                    <div class="contact-text">contact@karmaent.dev</div>
-                </div>
-                
-                <div class="contact-detail">
-                    <div class="contact-icon">
-                        <i class="fab fa-github"></i>
-                    </div>
-                    <div class="contact-text">github.com/KarmaENT</div>
-                </div>
-                
-                <div class="contact-detail">
-                    <div class="contact-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <div class="contact-text">The Digital Underground</div>
-                </div>
-                
-                <div class="social-links">
-                    <a href="https://github.com/KarmaENT" class="social-link" target="_blank">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="#" class="social-link">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" class="social-link">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="#" class="social-link">
-                        <i class="fab fa-discord"></i>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="contact-info">
-                <h3 class="contact-title">COLLABORATE</h3>
-                <p style="margin-bottom: 2rem; color: rgba(240, 240, 240, 0.85);">Looking for a developer who thinks outside the box? Let's create something that challenges the status quo. I specialize in unconventional solutions and boundary-pushing digital experiences.</p>
-                <a href="mailto:contact@karmaent.dev" class="cta-button">
-                    <i class="fas fa-spray-can"></i> SEND MESSAGE
+                <a href="#" class="project-link">
+                    ACCESS EXPLOIT <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
         </div>
     </section>
     
+    <!-- Skills Section -->
+    <section class="section" id="skills">
+        <h2 class="section-title">HACKER <span>ARSENAL</span></h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <i class="fas fa-skull"></i>
+                </div>
+                <h3 class="skill-title">ZERO-DAY EXPLOITS</h3>
+                <p class="skill-description">Identifying and weaponizing undisclosed vulnerabilities for maximum profit and disruption.</p>
+            </div>
+            
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <i class="fas fa-bitcoin"></i>
+                </div>
+                <h3 class="skill-title">CRYPTO ANARCHY</h3>
+                <p class="skill-description">Building decentralized systems that bypass traditional financial controls and regulations.</p>
+            </div>
+            
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3 class="skill-title">AI HACKING</h3>
+                <p class="skill-description">Deploying ML systems to automate exploit discovery and penetration at scale.</p>
+            </div>
+            
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <i class="fas fa-user-secret"></i>
+                </div>
+                <h3 class="skill-title">DARKNET OPS</h3>
+                <p class="skill-description">Operating anonymous networks and marketplaces beyond government surveillance.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <h2 class="section-title">INITIATE <span>CONTACT</span></h2>
+        <div class="contact-form">
+            <div class="form-group">
+                <label class="form-label">ENCRYPTED CHANNEL</label>
+                <select class="form-input">
+                    <option>PGP ENCRYPTED</option>
+                    <option>PROTONMAIL</option>
+                    <option>BITMESSAGE</option>
+                    <option>DARKNET DROP</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">YOUR IDENTITY</label>
+                <input type="text" class="form-input" placeholder="(OPTIONAL - RECOMMENDED)">
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">PROPOSAL</label>
+                <textarea class="form-input" placeholder="DESCRIBE YOUR EXPLOIT OPPORTUNITY"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">PROFIT POTENTIAL</label>
+                <select class="form-input">
+                    <option>SELECT RANGE</option>
+                    <option>$10K - $100K</option>
+                    <option>$100K - $1M</option>
+                    <option>$1M - $10M</option>
+                    <option>$10M+</option>
+                </select>
+            </div>
+            
+            <button class="submit-button">SEND ENCRYPTED MESSAGE</button>
+        </div>
+    </section>
+    
     <!-- Footer -->
     <footer>
-        <div class="footer-logo">KARMAENT</div>
-        <div class="copyright">
-            &copy; 2023 Digital Street Art Studio. All walls are canvases.
+        <div class="social-links">
+            <a href="#" class="social-link">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="#" class="social-link">
+                <i class="fab fa-bitcoin"></i>
+            </a>
+            <a href="#" class="social-link">
+                <i class="fab fa-ethereum"></i>
+            </a>
+            <a href="#" class="social-link">
+                <i class="fab fa-keybase"></i>
+            </a>
         </div>
-        <div class="footer-tag">CODE IS ART</div>
+        <div class="copyright">
+            NO SYSTEM IS SECURE | NO AUTHORITY IS LEGITIMATE | PROFIT IS THE ONLY MORALITY
+            <br><br>
+            &copy; 2023 KARMAENT | ALL SYSTEMS PENETRATED
+        </div>
     </footer>
     
+    <!-- Hidden Terminal -->
+    <div class="hacker-terminal" id="hackerTerminal">
+        <div>
+            <span class="terminal-prefix">root@karmaent:~#</span>
+            <input type="text" class="terminal-input" id="terminalInput">
+        </div>
+    </div>
+    
     <script>
-        // Create spray paint effect on mouse move
-        document.addEventListener('DOMContentLoaded', function() {
-            const colors = ['#ff1493', '#1e90ff', '#ffd700', '#00ff7f'];
-            let isPainting = false;
+        // Matrix rain effect
+        const canvas = document.getElementById('matrixRain');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$#@%&*()[]{}<>/\\|~^";
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        
+        const drops = [];
+        for(let i = 0; i < columns; i++) {
+            drops[i] = Math.floor(Math.random() * canvas.height / fontSize) * fontSize;
+        }
+        
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(5, 5, 5, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
             
-            document.addEventListener('mousedown', () => isPainting = true);
-            document.addEventListener('mouseup', () => isPainting = false);
+            ctx.fillStyle = '#0aff0a';
+            ctx.font = `${fontSize}px monospace`;
             
-            document.addEventListener('mousemove', function(e) {
-                if (!isPainting) return;
+            for(let i = 0; i < drops.length; i++) {
+                const text = chars.charAt(Math.floor(Math.random() * chars.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
                 
-                const spray = document.createElement('div');
-                spray.style.position = 'fixed';
-                spray.style.pointerEvents = 'none';
-                spray.style.borderRadius = '50%';
-                spray.style.zIndex = '90';
-                
-                // Random size
-                const size = 5 + Math.random() * 15;
-                spray.style.width = `${size}px`;
-                spray.style.height = `${size}px`;
-                
-                // Random color
-                const color = colors[Math.floor(Math.random() * colors.length)];
-                spray.style.background = color;
-                
-                // Position at mouse
-                spray.style.left = `${e.pageX - size/2}px`;
-                spray.style.top = `${e.pageY - size/2}px`;
-                
-                // Random opacity
-                spray.style.opacity = 0.7 + Math.random() * 0.3;
-                
-                document.body.appendChild(spray);
-                
-                // Remove after animation
-                setTimeout(() => {
-                    spray.style.transition = 'transform 0.5s, opacity 1.5s';
-                    spray.style.transform = `scale(${1 + Math.random() * 2})`;
-                    spray.style.opacity = '0';
-                    
-                    setTimeout(() => {
-                        if (spray.parentNode) spray.parentNode.removeChild(spray);
-                    }, 1500);
-                }, 100);
-            });
-            
-            // Animated spray can effect
-            const can = document.querySelector('.spray-can');
-            setInterval(() => {
-                if (Math.random() > 0.7) {
-                    const spray = document.createElement('div');
-                    spray.style.position = 'absolute';
-                    spray.style.pointerEvents = 'none';
-                    spray.style.borderRadius = '50% 50% 0 50%';
-                    
-                    // Position at spray can nozzle
-                    const rect = can.getBoundingClientRect();
-                    spray.style.left = `${rect.left + 35}px`;
-                    spray.style.top = `${rect.top - 10}px`;
-                    
-                    // Random size
-                    const size = 30 + Math.random() * 50;
-                    spray.style.width = `${size}px`;
-                    spray.style.height = `${size * 0.7}px`;
-                    
-                    // Color
-                    spray.style.background = 'rgba(255, 20, 147, 0.2)';
-                    
-                    // Animation
-                    spray.style.transition = 'all 1s';
-                    spray.style.transform = 'translateY(-100px) scale(1.5)';
-                    spray.style.opacity = '0';
-                    
-                    document.body.appendChild(spray);
-                    
-                    setTimeout(() => {
-                        if (spray.parentNode) spray.parentNode.removeChild(spray);
-                    }, 1000);
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
                 }
-            }, 1500);
+                
+                drops[i]++;
+            }
+        }
+        
+        setInterval(drawMatrix, 33);
+        
+        // Terminal commands
+        const terminalInput = document.getElementById('terminalInput');
+        const hackerTerminal = document.getElementById('hackerTerminal');
+        
+        // Show terminal on backtick key
+        document.addEventListener('keydown', (e) => {
+            if(e.key === '`') {
+                hackerTerminal.style.display = hackerTerminal.style.display === 'block' ? 'none' : 'block';
+                if(hackerTerminal.style.display === 'block') {
+                    terminalInput.focus();
+                }
+            }
+        });
+        
+        // Process terminal commands
+        terminalInput.addEventListener('keydown', (e) => {
+            if(e.key === 'Enter') {
+                const command = terminalInput.value.trim();
+                terminalInput.value = '';
+                
+                if(command === 'help') {
+                    alert('Available commands: \n\naccess exploits - Show active projects\ninitiate contact - Open contact form\nlaunch exploit - Start attack sequence\nsystem status - Show current stats\nclear - Clear terminal');
+                } else if(command === 'access exploits') {
+                    window.location.hash = '#projects';
+                    hackerTerminal.style.display = 'none';
+                } else if(command === 'initiate contact') {
+                    window.location.hash = '#contact';
+                    hackerTerminal.style.display = 'none';
+                } else if(command === 'launch exploit') {
+                    alert('Exploit sequence initiated...\nPenetrating firewalls...\nSystem compromised!\nProfit extracted!');
+                } else if(command === 'system status') {
+                    alert('System Status:\n\nBotnets: 47,219 nodes\nExploits active: 12\nRevenue today: $18,742\n0-days: 7\nThreat level: EXTREME');
+                } else if(command === 'clear') {
+                    // Just hides the terminal
+                    hackerTerminal.style.display = 'none';
+                } else if(command) {
+                    alert(`Command not recognized: ${command}\nType "help" for available commands`);
+                }
+            }
+        });
+        
+        // Update matrix canvas on resize
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+        
+        // Glitch effect on all section titles
+        const sectionTitles = document.querySelectorAll('.section-title');
+        sectionTitles.forEach(title => {
+            setInterval(() => {
+                if(Math.random() > 0.7) {
+                    title.style.textShadow = `0 0 15px ${Math.random() > 0.5 ? '#ff00c8' : '#00c8ff'}`;
+                    setTimeout(() => {
+                        title.style.textShadow = '0 0 15px #0aff0a';
+                    }, 100);
+                }
+            }, 500);
         });
     </script>
 </body>
