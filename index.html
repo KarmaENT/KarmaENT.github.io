@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KarmaENT | Innovative Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0a0a0a;
+            --secondary: #1a1a1a;
+            --accent: #ff4d5a;
+            --accent-light: #ff7d87;
+            --accent-dark: #cc0011;
+            --text: #f5f5f5;
+            --text-secondary: #b0b0b0;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--primary);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            color: var(--accent);
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            color: var(--accent);
+            font-size: 2.2rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 650px;
+        }
+        
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .hero h1 span {
+            color: var(--accent);
+            position: relative;
+        }
+        
+        .hero h1 span:after {
+            content: '';
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            width: 100%;
+            height: 15px;
+            background: rgba(255, 77, 90, 0.3);
+            z-index: -1;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 550px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 15px 35px;
+            background: var(--accent);
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: var(--transition);
+            border: 2px solid var(--accent);
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+        
+        .cta-button:hover {
+            background: transparent;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 77, 90, 0.3);
+        }
+        
+        /* Geometric Background */
+        .geometric-bg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 77, 90, 0.1);
+            filter: blur(80px);
+        }
+        
+        .shape-1 {
+            width: 500px;
+            height: 500px;
+            top: -100px;
+            right: -100px;
+        }
+        
+        .shape-2 {
+            width: 300px;
+            height: 300px;
+            bottom: 50px;
+            right: 200px;
+            background: rgba(42, 157, 244, 0.1);
+        }
+        
+        .shape-3 {
+            width: 200px;
+            height: 200px;
+            top: 200px;
+            right: 400px;
+            background: rgba(106, 76, 147, 0.1);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 120px 0;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .section-title p {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .feature-card {
+            background: rgba(30, 30, 30, 0.5);
+            border-radius: 20px;
+            padding: 40px 30px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 77, 90, 0.2);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 25px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card p {
+            color: var(--text-secondary);
+        }
+        
+        /* Portfolio Showcase */
+        .portfolio {
+            padding: 120px 0;
+            background: var(--secondary);
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .portfolio-item {
+            position: relative;
+            height: 350px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .portfolio-img {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: var(--transition);
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px;
+            background: linear-gradient(transparent, rgba(10, 10, 10, 0.9));
+            transform: translateY(100px);
+            transition: var(--transition);
+        }
+        
+        .portfolio-item:hover .portfolio-img {
+            transform: scale(1.1);
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            transform: translateY(0);
+        }
+        
+        .portfolio-overlay h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .portfolio-overlay p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+        
+        /* Stats Section */
+        .stats {
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .stat-item {
+            position: relative;
+            padding: 30px;
+        }
+        
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 15px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .stat-label {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 120px 0;
+            position: relative;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        
+        .contact-form {
+            background: rgba(30, 30, 30, 0.5);
+            border-radius: 20px;
+            padding: 50px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            background: rgba(20, 20, 20, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(255, 77, 90, 0.2);
+        }
+        
+        .contact-info h3 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .contact-detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-top: 5px;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            padding: 70px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        
+        .footer-about p {
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+        }
+        
+        .footer-heading {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+        
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">
+                <i class="fas fa-infinity logo-icon"></i>
+                KarmaENT
+            </a>
+            <nav class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#features">Features</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#stats">Stats</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1>Redefining <span>Digital Excellence</span> Through Innovation</h1>
+            <p>KarmaENT delivers cutting-edge solutions that transform businesses and create lasting impact in the digital landscape.</p>
+            <a href="#contact" class="cta-button">Get Started</a>
+        </div>
+        <div class="geometric-bg">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Core Expertise</h2>
+                <p>We specialize in creating solutions that drive growth and innovation</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-brain feature-icon"></i>
+                    <h3>AI-Driven Solutions</h3>
+                    <p>Leverage artificial intelligence to automate processes, gain insights, and enhance decision-making capabilities.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-cube feature-icon"></i>
+                    <h3>Blockchain Integration</h3>
+                    <p>Secure and transparent solutions built on decentralized technology for next-generation applications.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-chart-network feature-icon"></i>
+                    <h3>Data Analytics</h3>
+                    <p>Transform raw data into actionable intelligence that drives business growth and innovation.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-cloud-upload-alt feature-icon"></i>
+                    <h3>Cloud Infrastructure</h3>
+                    <p>Scalable and resilient cloud solutions designed for performance and security at any scale.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
+        <div class="container">
+            <div class="section-title">
+                <h2>Innovative Projects</h2>
+                <p>Discover our transformative solutions that redefine industries</p>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-img" style="background: linear-gradient(45deg, #2e3192, #1bffff);"></div>
+                    <div class="portfolio-overlay">
+                        <h3>Nexus Financial Platform</h3>
+                        <p>Blockchain-powered financial ecosystem with AI-driven analytics</p>
+                        <a href="#" class="cta-button">View Case Study</a>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-img" style="background: linear-gradient(45deg, #d4145a, #fbb03b);"></div>
+                    <div class="portfolio-overlay">
+                        <h3>Vortex AI Assistant</h3>
+                        <p>Enterprise-grade conversational AI with predictive capabilities</p>
+                        <a href="#" class="cta-button">View Case Study</a>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-img" style="background: linear-gradient(45deg, #009245, #fcee21);"></div>
+                    <div class="portfolio-overlay">
+                        <h3>Quantum Security Suite</h3>
+                        <p>Next-generation cybersecurity platform with quantum-resistant encryption</p>
+                        <a href="#" class="cta-button">View Case Study</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats" id="stats">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Impact in Numbers</h2>
+                <p>Quantifying our journey of innovation and excellence</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">150+</div>
+                    <div class="stat-label">Projects Delivered</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Client Retention</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">40+</div>
+                    <div class="stat-label">Industry Awards</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">15M+</div>
+                    <div class="stat-label">Users Impacted</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container contact-container">
+            <div class="contact-form">
+                <h2>Let's Transform Your Vision</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Project Details</label>
+                        <textarea id="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="cta-button">Send Message</button>
+                </form>
+            </div>
+            <div class="contact-info">
+                <h3>Connect With Us</h3>
+                <div class="contact-details">
+                    <div class="contact-detail">
+                        <i class="fas fa-map-marker-alt contact-icon"></i>
+                        <div>
+                            <h4>Location</h4>
+                            <p>San Francisco, CA • New York, NY • London, UK</p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fas fa-envelope contact-icon"></i>
+                        <div>
+                            <h4>Email Us</h4>
+                            <p>connect@karmaent.dev</p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fas fa-phone-alt contact-icon"></i>
+                        <div>
+                            <h4>Call Us</h4>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">KarmaENT</div>
+                    <p>Pioneering digital transformation through innovative technology solutions that empower businesses to thrive in the modern landscape.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links-section">
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <div class="footer-links">
+                        <a href="#home">Home</a>
+                        <a href="#features">Services</a>
+                        <a href="#portfolio">Portfolio</a>
+                        <a href="#stats">About Us</a>
+                        <a href="#contact">Contact</a>
+                    </div>
+                </div>
+                <div class="footer-links-section">
+                    <h4 class="footer-heading">Our Services</h4>
+                    <div class="footer-links">
+                        <a href="#">AI Development</a>
+                        <a href="#">Blockchain Solutions</a>
+                        <a href="#">Cloud Services</a>
+                        <a href="#">Data Analytics</a>
+                        <a href="#">Cybersecurity</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 KarmaENT. All rights reserved. Designed with ❤️ for innovation.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.3)';
+                header.style.padding = '15px 0';
+            } else {
+                header.style.boxShadow = 'none';
+                header.style.padding = '20px 0';
+            }
+        });
+        
+        // Feature card animation on scroll
+        const featureCards = document.querySelectorAll('.feature-card');
+        
+        const featureObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        featureCards.forEach(card => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            featureObserver.observe(card);
+        });
+    </script>
+</body>
+</html>
