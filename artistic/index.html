@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KarmaENT | Abstract Dimensions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --void-black: #050505;
+            --deep-space: #0d0d15;
+            --electric-blue: #00f5d4;
+            --neon-purple: #9b5de5;
+            --hot-pink: #f15bb5;
+            --sun-yellow: #fee440;
+            --glass: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--void-black) 0%, var(--deep-space) 100%);
+            color: #f0f0f0;
+            font-family: 'Montserrat', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.6;
+        }
+        
+        /* Abstract Background */
+        .abstract-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .abstract-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.15;
+            transform-origin: center;
+        }
+        
+        /* Header & Navigation */
+        header {
+            padding: 1.8rem 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(12px);
+            background: var(--glass);
+            border-bottom: 1px solid var(--glass-border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, var(--electric-blue), var(--hot-pink));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -1px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+        
+        .nav-links a {
+            color: rgba(240, 240, 240, 0.85);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 400;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--electric-blue), var(--neon-purple));
+            transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .nav-links a:hover {
+            color: var(--electric-blue);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0 6%;
+            position: relative;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            z-index: 10;
+            padding: 3rem;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            background: linear-gradient(45deg, var(--electric-blue), var(--hot-pink), var(--sun-yellow));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -1.5px;
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            color: rgba(240, 240, 240, 0.9);
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: linear-gradient(45deg, var(--neon-purple), var(--hot-pink));
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(155, 93, 229, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .cta-button.secondary {
+            background: transparent;
+            border: 2px solid var(--electric-blue);
+            box-shadow: 0 10px 30px rgba(0, 245, 212, 0.2);
+            color: var(--electric-blue);
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--hot-pink), var(--neon-purple));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+        
+        .cta-button:hover::before {
+            opacity: 1;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(155, 93, 229, 0.5);
+        }
+        
+        .cta-button.secondary:hover {
+            background: rgba(0, 245, 212, 0.1);
+            box-shadow: 0 15px 40px rgba(0, 245, 212, 0.3);
+        }
+        
+        /* Abstract Grid */
+        .abstract-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            grid-template-rows: repeat(8, 1fr);
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .grid-item {
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        
+        /* Skills Section */
+        .skills {
+            padding: 8rem 6%;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 5rem;
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(45deg, var(--electric-blue), var(--sun-yellow));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .skill-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(0, 245, 212, 0.3);
+        }
+        
+        .skill-icon {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, var(--deep-space), var(--void-black));
+            border-radius: 50%;
+            margin-bottom: 1.8rem;
+            font-size: 2.5rem;
+            color: var(--electric-blue);
+            border: 2px solid var(--electric-blue);
+            box-shadow: 0 0 20px rgba(0, 245, 212, 0.2);
+        }
+        
+        .skill-title {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .skill-description {
+            color: rgba(240, 240, 240, 0.8);
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Projects Section */
+        .projects {
+            padding: 8rem 6%;
+            background: linear-gradient(to bottom, var(--deep-space), #000);
+            position: relative;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .project-card {
+            background: linear-gradient(145deg, #0a0a12, #111120);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(155, 93, 229, 0.1);
+            position: relative;
+        }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                transparent, 
+                rgba(155, 93, 229, 0.1),
+                transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
+        }
+        
+        .project-card:hover::before {
+            opacity: 1;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px) rotate(1deg);
+            box-shadow: 0 25px 50px rgba(155, 93, 229, 0.3);
+        }
+        
+        .project-header {
+            height: 200px;
+            background: linear-gradient(45deg, var(--neon-purple), var(--hot-pink));
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIxMCIgaGVpZ2h0PSIxMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjEpIj48L3JlY3Q+PHJlY3QgeD0iMjAiIHdpZHRoPSIxMCIgaGVpZ2h0PSIxMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjEpIj48L3JlY3Q+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI3BhdHRlcm4pIj48L3JlY3Q+PC9zdmc+');
+            opacity: 0.3;
+        }
+        
+        .project-content {
+            padding: 2.2rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .project-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .project-description {
+            color: rgba(240, 240, 240, 0.85);
+            margin-bottom: 1.8rem;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 1.8rem;
+        }
+        
+        .tech-tag {
+            background: rgba(0, 245, 212, 0.1);
+            color: var(--electric-blue);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(0, 245, 212, 0.3);
+        }
+        
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--neon-purple);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .project-link:hover {
+            color: var(--hot-pink);
+            transform: translateX(5px);
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 8rem 6%;
+            position: relative;
+        }
+        
+        .contact-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .contact-info {
+            background: var(--glass);
+            border-radius: 20px;
+            padding: 3rem;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+        }
+        
+        .contact-title {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: white;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            margin-bottom: 1.8rem;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, var(--neon-purple), var(--hot-pink));
+            border-radius: 50%;
+            color: white;
+            font-size: 1.3rem;
+        }
+        
+        .contact-text {
+            font-size: 1.1rem;
+            color: rgba(240, 240, 240, 0.9);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 2.5rem;
+        }
+        
+        .social-link {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--glass);
+            border-radius: 50%;
+            color: var(--electric-blue);
+            font-size: 1.4rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid var(--glass-border);
+        }
+        
+        .social-link:hover {
+            background: linear-gradient(45deg, var(--neon-purple), var(--hot-pink));
+            color: white;
+            transform: translateY(-5px);
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(to top, var(--void-black), transparent);
+            padding: 3rem 6%;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+            position: relative;
+        }
+        
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, var(--electric-blue), var(--sun-yellow));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1.5rem;
+        }
+        
+        .copyright {
+            color: rgba(240, 240, 240, 0.6);
+            font-size: 1rem;
+            margin-top: 2rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Abstract Background -->
+    <div class="abstract-bg" id="abstract-bg"></div>
+    
+    <!-- Abstract Grid -->
+    <div class="abstract-grid" id="abstract-grid"></div>
+    
+    <!-- Header -->
+    <header>
+        <div class="logo">KarmaENT</div>
+        <nav class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Abstract Dimensions</h1>
+            <p>I craft digital experiences at the intersection of technology and abstract art. My work explores the boundaries of perception through innovative code and unconventional design.</p>
+            <div class="cta-buttons">
+                <a href="#projects" class="cta-button">
+                    <i class="fas fa-bolt"></i> Explore Projects
+                </a>
+                <a href="#contact" class="cta-button secondary">
+                    <i class="fas fa-paper-plane"></i> Contact Me
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <h2 class="section-title">Creative Expertise</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <i class="fas fa-cube"></i>
+                </div>
+                <h3 class="skill-title">Generative Art</h3>
+                <p class="skill-description">Creating evolving abstract visuals using algorithms and parametric design principles.</p>
+            </div>
+            
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3 class="skill-title">Experimental Development</h3>
+                <p class="skill-description">Pushing web technologies to create unique interactive experiences.</p>
+            </div>
+            
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <h3 class="skill-title">Visual Design</h3>
+                <p class="skill-description">Designing interfaces that challenge conventional aesthetics and user expectations.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <h2 class="section-title">Abstract Creations</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-header"></div>
+                <div class="project-content">
+                    <h3 class="project-title">Fractal Consciousness</h3>
+                    <p class="project-description">An interactive exploration of infinite patterns using recursive algorithms and WebGL rendering.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">WebGL</span>
+                        <span class="tech-tag">GLSL</span>
+                        <span class="tech-tag">Three.js</span>
+                    </div>
+                    <a href="#" class="project-link">
+                        <i class="fas fa-external-link-alt"></i> View Project
+                    </a>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-header"></div>
+                <div class="project-content">
+                    <h3 class="project-title">Neural Abstractions</h3>
+                    <p class="project-description">AI-generated abstract art that evolves based on user interaction and environmental inputs.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">TensorFlow.js</span>
+                        <span class="tech-tag">Canvas API</span>
+                        <span class="tech-tag">WebSockets</span>
+                    </div>
+                    <a href="#" class="project-link">
+                        <i class="fas fa-external-link-alt"></i> View Project
+                    </a>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-header"></div>
+                <div class="project-content">
+                    <h3 class="project-title">Quantum Interfaces</h3>
+                    <p class="project-description">Experimental UI framework that applies quantum computing principles to interaction design.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">QuantumJS</span>
+                        <span class="tech-tag">Framer Motion</span>
+                    </div>
+                    <a href="#" class="project-link">
+                        <i class="fas fa-external-link-alt"></i> View Project
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3 class="contact-title">Connect with Me</h3>
+                
+                <div class="contact-detail">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-text">contact@karmaent.dev</div>
+                </div>
+                
+                <div class="contact-detail">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-text">Digital Nomad • Global</div>
+                </div>
+                
+                <div class="contact-detail">
+                    <div class="contact-icon">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <div class="contact-text">Exploring the edges of web technology</div>
+                </div>
+                
+                <div class="social-links">
+                    <a href="https://github.com/KarmaENT" class="social-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-dribbble"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="contact-info">
+                <h3 class="contact-title">Collaborate</h3>
+                <p style="margin-bottom: 2rem; color: rgba(240, 240, 240, 0.85);">I'm open to experimental projects, artistic collaborations, and pushing the boundaries of digital experiences. Let's create something extraordinary.</p>
+                <a href="mailto:contact@karmaent.dev" class="cta-button">
+                    <i class="fas fa-paper-plane"></i> Send Message
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">KarmaENT</div>
+        <div class="copyright">
+            &copy; 2023 Abstract Dimensions. Crafted with <i class="fas fa-heart" style="color: var(--hot-pink);"></i> at the edge of digital art.
+        </div>
+    </footer>
+    
+    <script>
+        // Create abstract background
+        function createAbstractBackground() {
+            const abstractBg = document.getElementById('abstract-bg');
+            
+            // Create abstract shapes
+            for (let i = 0; i < 12; i++) {
+                const shape = document.createElement('div');
+                shape.classList.add('abstract-shape');
+                
+                // Random size
+                const size = 200 + Math.random() * 400;
+                shape.style.width = `${size}px`;
+                shape.style.height = `${size}px`;
+                
+                // Random position
+                shape.style.left = `${Math.random() * 100}%`;
+                shape.style.top = `${Math.random() * 100}%`;
+                
+                // Random color gradient
+                const colors = [
+                    `radial-gradient(circle, var(--neon-purple), transparent 70%)`,
+                    `radial-gradient(circle, var(--hot-pink), transparent 70%)`,
+                    `radial-gradient(circle, var(--electric-blue), transparent 70%)`,
+                    `radial-gradient(circle, var(--sun-yellow), transparent 70%)`
+                ];
+                shape.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Random animation
+                const animationDuration = 20 + Math.random() * 40;
+                shape.style.animation = `float ${animationDuration}s infinite ease-in-out`;
+                shape.style.animationDelay = `${Math.random() * 10}s`;
+                
+                abstractBg.appendChild(shape);
+            }
+        }
+        
+        // Create abstract grid
+        function createAbstractGrid() {
+            const abstractGrid = document.getElementById('abstract-grid');
+            
+            // Create grid items
+            for (let i = 0; i < 64; i++) {
+                const gridItem = document.createElement('div');
+                gridItem.classList.add('grid-item');
+                abstractGrid.appendChild(gridItem);
+            }
+            
+            // Add hover effect to grid items
+            const gridItems = document.querySelectorAll('.grid-item');
+            gridItems.forEach(item => {
+                item.addEventListener('mouseenter', () => {
+                    const colors = [
+                        'rgba(0, 245, 212, 0.1)',
+                        'rgba(155, 93, 229, 0.1)',
+                        'rgba(241, 91, 181, 0.1)',
+                        'rgba(254, 228, 64, 0.1)'
+                    ];
+                    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                    item.style.background = randomColor;
+                    item.style.transform = `scale(${0.8 + Math.random() * 0.4})`;
+                });
+                
+                item.addEventListener('mouseleave', () => {
+                    item.style.background = '';
+                    item.style.transform = '';
+                });
+            });
+        }
+        
+        // Floating animation for abstract shapes
+        function floatAnimation() {
+            const shapes = document.querySelectorAll('.abstract-shape');
+            
+            shapes.forEach(shape => {
+                // Random float movement
+                const keyframes = `
+                    @keyframes float {
+                        0% { transform: translate(0, 0) rotate(0deg); }
+                        25% { transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px) rotate(${Math.random() * 90}deg); }
+                        50% { transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px) rotate(${Math.random() * 180}deg); }
+                        75% { transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px) rotate(${Math.random() * 270}deg); }
+                        100% { transform: translate(0, 0) rotate(${Math.random() * 360}deg); }
+                    }
+                `;
+                
+                const style = document.createElement('style');
+                style.innerHTML = keyframes;
+                document.head.appendChild(style);
+            });
+        }
+        
+        // Initialize everything when the page loads
+        window.addEventListener('DOMContentLoaded', () => {
+            createAbstractBackground();
+            createAbstractGrid();
+            floatAnimation();
+        });
+        
+        // Add scroll effect to grid items
+        window.addEventListener('scroll', () => {
+            const gridItems = document.querySelectorAll('.grid-item');
+            const scrollY = window.scrollY;
+            
+            gridItems.forEach((item, index) => {
+                const row = Math.floor(index / 8);
+                const col = index % 8;
+                
+                // Create a wave effect based on position
+                const offset = (row * 50 + col * 20 + scrollY * 0.1) % 100;
+                const scale = 0.9 + Math.sin(offset * 0.1) * 0.1;
+                
+                item.style.transform = `scale(${scale})`;
+                item.style.opacity = 0.3 + Math.abs(Math.sin(offset * 0.05)) * 0.7;
+            });
+        });
+    </script>
+</body>
+</html>

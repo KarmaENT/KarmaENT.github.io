@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KarmaENT | Abstract Dimensions</title>
+    <title>KarmaENT | Street Art Coder</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;700;900&family=Stencil+Std&display=swap" rel="stylesheet">
     <style>
         :root {
-            --void-black: #050505;
-            --deep-space: #0d0d15;
-            --electric-blue: #00f5d4;
-            --neon-purple: #9b5de5;
-            --hot-pink: #f15bb5;
-            --sun-yellow: #fee440;
-            --glass: rgba(255, 255, 255, 0.08);
-            --glass-border: rgba(255, 255, 255, 0.15);
+            --concrete: #2c2c2c;
+            --brick: #8B4513;
+            --graffiti-blue: #1e90ff;
+            --spray-pink: #ff1493;
+            --tag-yellow: #ffd700;
+            --stencil-white: #f0f0f0;
+            --stencil-black: #0a0a0a;
+            --grunge-border: #5a5a5a;
         }
         
         * {
@@ -25,72 +25,72 @@
         }
         
         body {
-            background: linear-gradient(135deg, var(--void-black) 0%, var(--deep-space) 100%);
-            color: #f0f0f0;
-            font-family: 'Montserrat', sans-serif;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 20%),
+                linear-gradient(135deg, var(--concrete) 0%, #1a1a1a 100%),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%232c2c2c"/><path d="M0 0L100 100M100 0L0 100" stroke="%233a3a3a" stroke-width="1"/></svg>');
+            color: var(--stencil-white);
+            font-family: 'Urbanist', sans-serif;
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
             line-height: 1.6;
         }
         
-        /* Abstract Background */
-        .abstract-bg {
+        /* Grunge effects */
+        body::before {
+            content: "";
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
-        
-        .abstract-shape {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0.15;
-            transform-origin: center;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"><filter id="grunge"><feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="5" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="10" xChannelSelector="R" yChannelSelector="G"/></filter><rect width="100%" height="100%" filter="url(%23grunge)" fill-opacity="0.05"/></svg>');
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 100;
         }
         
         /* Header & Navigation */
         header {
-            padding: 1.8rem 6%;
+            padding: 1.5rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            backdrop-filter: blur(12px);
-            background: var(--glass);
-            border-bottom: 1px solid var(--glass-border);
             position: sticky;
             top: 0;
-            z-index: 1000;
+            z-index: 100;
+            background: rgba(10, 10, 10, 0.85);
+            border-bottom: 3px solid var(--grunge-border);
         }
         
         .logo {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Stencil Std', sans-serif;
             font-size: 2.2rem;
-            font-weight: 900;
-            background: linear-gradient(45deg, var(--electric-blue), var(--hot-pink));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            letter-spacing: -1px;
+            font-weight: 700;
+            color: var(--stencil-white);
+            text-shadow: 3px 3px 0 var(--stencil-black);
+            letter-spacing: 2px;
+            position: relative;
+            padding: 0.5rem 1rem;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="40" viewBox="0 0 100 40"><rect x="5" y="5" width="90" height="30" fill="none" stroke="%23ff1493" stroke-width="2" stroke-dasharray="5,3"/></svg>') no-repeat;
         }
         
         .nav-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 2rem;
         }
         
         .nav-links a {
-            color: rgba(240, 240, 240, 0.85);
+            color: var(--stencil-white);
             text-decoration: none;
             font-size: 1.1rem;
-            font-weight: 400;
+            font-weight: 700;
             position: relative;
             padding: 0.5rem 0;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         .nav-links a::after {
@@ -98,18 +98,20 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--electric-blue), var(--neon-purple));
-            transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            width: 100%;
+            height: 3px;
+            background: var(--spray-pink);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
         }
         
         .nav-links a:hover {
-            color: var(--electric-blue);
+            color: var(--spray-pink);
         }
         
         .nav-links a:hover::after {
-            width: 100%;
+            transform: scaleX(1);
         }
         
         /* Hero Section */
@@ -119,7 +121,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 0 6%;
+            padding: 0 5%;
             position: relative;
             text-align: center;
         }
@@ -127,270 +129,230 @@
         .hero-content {
             max-width: 900px;
             z-index: 10;
-            padding: 3rem;
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border-radius: 24px;
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            position: relative;
         }
         
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 4.5rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-            background: linear-gradient(45deg, var(--electric-blue), var(--hot-pink), var(--sun-yellow));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            letter-spacing: -1.5px;
+        .stencil-title {
+            font-family: 'Stencil Std', sans-serif;
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            color: var(--stencil-white);
+            text-shadow: 5px 5px 0 var(--stencil-black);
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        .stencil-subtitle {
+            font-family: 'Stencil Std', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--tag-yellow);
+            text-shadow: 3px 3px 0 var(--stencil-black);
+            position: relative;
         }
         
         .hero p {
-            font-size: 1.4rem;
-            margin-bottom: 2.5rem;
+            font-size: 1.3rem;
             max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            color: rgba(240, 240, 240, 0.9);
+            margin: 0 auto 2.5rem;
+            background: rgba(10, 10, 10, 0.7);
+            padding: 1.5rem;
+            border-left: 3px solid var(--spray-pink);
+            position: relative;
+            text-align: left;
+            line-height: 1.8;
         }
         
-        .cta-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            margin-top: 2rem;
+        .hero p::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%23333" stroke-width="1" stroke-dasharray="5,3"/></svg>');
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: -1;
         }
         
         .cta-button {
             display: inline-flex;
             align-items: center;
             gap: 0.8rem;
-            background: linear-gradient(45deg, var(--neon-purple), var(--hot-pink));
-            color: white;
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
+            background: linear-gradient(to right, var(--graffiti-blue), var(--spray-pink));
+            color: var(--stencil-black);
+            padding: 1.2rem 2.8rem;
+            border-radius: 0;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 30px rgba(155, 93, 229, 0.3);
+            font-weight: 900;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
             z-index: 1;
-            border: none;
-            cursor: pointer;
+            border: 3px solid var(--stencil-black);
+            box-shadow: 5px 5px 0 var(--stencil-black);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Stencil Std', sans-serif;
         }
         
-        .cta-button.secondary {
-            background: transparent;
-            border: 2px solid var(--electric-blue);
-            box-shadow: 0 10px 30px rgba(0, 245, 212, 0.2);
-            color: var(--electric-blue);
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 8px 8px 0 var(--stencil-black);
         }
         
         .cta-button::before {
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
+            left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, var(--hot-pink), var(--neon-purple));
-            opacity: 0;
-            transition: opacity 0.4s ease;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: 0.5s;
             z-index: -1;
         }
         
         .cta-button:hover::before {
-            opacity: 1;
+            left: 100%;
         }
         
-        .cta-button:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(155, 93, 229, 0.5);
-        }
-        
-        .cta-button.secondary:hover {
-            background: rgba(0, 245, 212, 0.1);
-            box-shadow: 0 15px 40px rgba(0, 245, 212, 0.3);
-        }
-        
-        /* Abstract Grid */
-        .abstract-grid {
+        /* Graffiti Tags */
+        .graffiti-tag {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: grid;
-            grid-template-columns: repeat(8, 1fr);
-            grid-template-rows: repeat(8, 1fr);
+            font-family: 'Urbanist', sans-serif;
+            font-weight: 900;
+            font-size: 1.8rem;
+            color: var(--tag-yellow);
+            transform: rotate(-15deg);
+            text-shadow: 2px 2px 0 var(--stencil-black);
+            opacity: 0.8;
             z-index: 0;
-            pointer-events: none;
         }
         
-        .grid-item {
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        .tag-1 {
+            top: 20%;
+            left: 10%;
+            color: var(--spray-pink);
+            font-size: 2.5rem;
         }
         
-        /* Skills Section */
-        .skills {
-            padding: 8rem 6%;
+        .tag-2 {
+            top: 40%;
+            right: 15%;
+            color: var(--graffiti-blue);
+            transform: rotate(10deg);
+        }
+        
+        .tag-3 {
+            bottom: 25%;
+            left: 20%;
+            color: var(--tag-yellow);
+            transform: rotate(-5deg);
+            font-size: 2.2rem;
+        }
+        
+        /* Projects Section */
+        .projects {
+            padding: 8rem 5%;
             position: relative;
+            background: 
+                linear-gradient(rgba(20, 20, 20, 0.9), rgba(20, 20, 20, 0.9)),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%232c2c2c"/><path d="M0 20 Q50 -10 100 20 L100 80 Q50 110 0 80 Z" fill="%233a3a3a" opacity="0.2"/></svg>');
+            border-top: 5px solid var(--grunge-border);
+            border-bottom: 5px solid var(--grunge-border);
         }
         
         .section-title {
             text-align: center;
-            font-size: 2.8rem;
+            font-size: 3rem;
             margin-bottom: 5rem;
-            font-family: 'Playfair Display', serif;
-            background: linear-gradient(45deg, var(--electric-blue), var(--sun-yellow));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            font-family: 'Stencil Std', sans-serif;
+            color: var(--stencil-white);
+            text-shadow: 4px 4px 0 var(--stencil-black);
+            position: relative;
+            text-transform: uppercase;
         }
         
-        .skills-grid {
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 150px;
+            height: 4px;
+            background: var(--spray-pink);
+            margin: 1rem auto 0;
+        }
+        
+        .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2.5rem;
             max-width: 1400px;
             margin: 0 auto;
         }
         
-        .skill-card {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 2.5rem;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            backdrop-filter: blur(10px);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-        
-        .skill-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border-color: rgba(0, 245, 212, 0.3);
-        }
-        
-        .skill-icon {
-            width: 80px;
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(45deg, var(--deep-space), var(--void-black));
-            border-radius: 50%;
-            margin-bottom: 1.8rem;
-            font-size: 2.5rem;
-            color: var(--electric-blue);
-            border: 2px solid var(--electric-blue);
-            box-shadow: 0 0 20px rgba(0, 245, 212, 0.2);
-        }
-        
-        .skill-title {
-            font-size: 1.6rem;
-            margin-bottom: 1rem;
-            color: white;
-            font-weight: 600;
-        }
-        
-        .skill-description {
-            color: rgba(240, 240, 240, 0.8);
-            margin-bottom: 1.5rem;
-        }
-        
-        /* Projects Section */
-        .projects {
-            padding: 8rem 6%;
-            background: linear-gradient(to bottom, var(--deep-space), #000);
-            position: relative;
-        }
-        
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 3rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
         .project-card {
-            background: linear-gradient(145deg, #0a0a12, #111120);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(155, 93, 229, 0.1);
+            background: rgba(15, 15, 15, 0.95);
+            border: 3px solid var(--grunge-border);
             position: relative;
-        }
-        
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, 
-                transparent, 
-                rgba(155, 93, 229, 0.1),
-                transparent);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            z-index: 1;
-        }
-        
-        .project-card:hover::before {
-            opacity: 1;
+            overflow: hidden;
+            box-shadow: 8px 8px 0 var(--stencil-black);
+            transition: all 0.4s ease;
         }
         
         .project-card:hover {
-            transform: translateY(-10px) rotate(1deg);
-            box-shadow: 0 25px 50px rgba(155, 93, 229, 0.3);
+            transform: translateY(-10px);
+            box-shadow: 12px 12px 0 var(--stencil-black);
+            border-color: var(--spray-pink);
         }
         
         .project-header {
             height: 200px;
-            background: linear-gradient(45deg, var(--neon-purple), var(--hot-pink));
+            background: linear-gradient(45deg, #1a1a1a, #333);
             position: relative;
             overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
-        .project-header::after {
-            content: '';
+        .project-header::before {
+            content: "";
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIxMCIgaGVpZ2h0PSIxMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjEpIj48L3JlY3Q+PHJlY3QgeD0iMjAiIHdpZHRoPSIxMCIgaGVpZ2h0PSIxMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjEpIj48L3JlY3Q+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI3BhdHRlcm4pIj48L3JlY3Q+PC9zdmc+');
-            opacity: 0.3;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%23333" stroke-width="2" stroke-dasharray="8,4"/></svg>');
+            opacity: 0.5;
+        }
+        
+        .project-icon {
+            font-size: 4rem;
+            color: var(--spray-pink);
+            text-shadow: 3px 3px 0 var(--stencil-black);
+            z-index: 1;
         }
         
         .project-content {
-            padding: 2.2rem;
+            padding: 2rem;
             position: relative;
-            z-index: 2;
         }
         
         .project-title {
             font-size: 1.8rem;
             margin-bottom: 1rem;
-            color: white;
-            font-weight: 600;
+            color: var(--stencil-white);
+            font-family: 'Stencil Std', sans-serif;
+            letter-spacing: 1px;
         }
         
         .project-description {
             color: rgba(240, 240, 240, 0.85);
-            margin-bottom: 1.8rem;
+            margin-bottom: 1.5rem;
         }
         
         .project-tech {
@@ -401,33 +363,80 @@
         }
         
         .tech-tag {
-            background: rgba(0, 245, 212, 0.1);
-            color: var(--electric-blue);
-            padding: 0.4rem 1rem;
-            border-radius: 50px;
+            background: var(--stencil-black);
+            color: var(--tag-yellow);
+            padding: 0.5rem 1rem;
+            border-radius: 0;
             font-size: 0.9rem;
-            border: 1px solid rgba(0, 245, 212, 0.3);
+            font-weight: 700;
+            border: 2px solid var(--grunge-border);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         .project-link {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            color: var(--neon-purple);
+            color: var(--graffiti-blue);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
             transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
         }
         
         .project-link:hover {
-            color: var(--hot-pink);
+            color: var(--spray-pink);
             transform: translateX(5px);
+        }
+        
+        /* Spray Paint Effect */
+        .spray-can {
+            position: absolute;
+            width: 80px;
+            height: 150px;
+            bottom: 5%;
+            right: 5%;
+            z-index: 50;
+            transform: rotate(-10deg);
+            animation: wobble 3s infinite ease-in-out;
+        }
+        
+        .spray-can::before {
+            content: "";
+            position: absolute;
+            width: 30px;
+            height: 120px;
+            background: linear-gradient(to bottom, #333, #000);
+            border-radius: 5px 5px 15px 15px;
+            left: 25px;
+            top: 0;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+        }
+        
+        .spray-can::after {
+            content: "";
+            position: absolute;
+            width: 40px;
+            height: 20px;
+            background: var(--spray-pink);
+            border-radius: 5px;
+            left: 20px;
+            top: -15px;
+        }
+        
+        @keyframes wobble {
+            0%, 100% { transform: rotate(-10deg); }
+            50% { transform: rotate(-15deg); }
         }
         
         /* Contact Section */
         .contact {
-            padding: 8rem 6%;
+            padding: 8rem 5%;
             position: relative;
+            background: rgba(10, 10, 10, 0.95);
         }
         
         .contact-container {
@@ -440,18 +449,20 @@
         }
         
         .contact-info {
-            background: var(--glass);
-            border-radius: 20px;
+            background: rgba(20, 20, 20, 0.9);
+            border: 3px solid var(--grunge-border);
             padding: 3rem;
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(10px);
+            position: relative;
+            box-shadow: 8px 8px 0 var(--stencil-black);
         }
         
         .contact-title {
             font-size: 2.2rem;
             margin-bottom: 2rem;
-            color: white;
-            font-family: 'Playfair Display', serif;
+            color: var(--stencil-white);
+            font-family: 'Stencil Std', sans-serif;
+            text-shadow: 3px 3px 0 var(--stencil-black);
+            letter-spacing: 1px;
         }
         
         .contact-detail {
@@ -467,10 +478,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(45deg, var(--neon-purple), var(--hot-pink));
-            border-radius: 50%;
-            color: white;
+            background: var(--stencil-black);
+            border-radius: 0;
+            color: var(--spray-pink);
             font-size: 1.3rem;
+            border: 2px solid var(--grunge-border);
         }
         
         .contact-text {
@@ -490,38 +502,36 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--glass);
-            border-radius: 50%;
-            color: var(--electric-blue);
+            background: var(--stencil-black);
+            border-radius: 0;
+            color: var(--graffiti-blue);
             font-size: 1.4rem;
             text-decoration: none;
             transition: all 0.3s ease;
-            border: 1px solid var(--glass-border);
+            border: 2px solid var(--grunge-border);
         }
         
         .social-link:hover {
-            background: linear-gradient(45deg, var(--neon-purple), var(--hot-pink));
-            color: white;
+            background: var(--graffiti-blue);
+            color: var(--stencil-black);
             transform: translateY(-5px);
         }
         
         /* Footer */
         footer {
-            background: linear-gradient(to top, var(--void-black), transparent);
-            padding: 3rem 6%;
+            background: var(--stencil-black);
+            padding: 3rem 5%;
             text-align: center;
-            border-top: 1px solid var(--glass-border);
+            border-top: 3px solid var(--grunge-border);
             position: relative;
         }
         
         .footer-logo {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Stencil Std', sans-serif;
             font-size: 2.5rem;
             font-weight: 900;
-            background: linear-gradient(45deg, var(--electric-blue), var(--sun-yellow));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            color: var(--stencil-white);
+            text-shadow: 3px 3px 0 var(--grunge-border);
             margin-bottom: 1.5rem;
         }
         
@@ -531,14 +541,30 @@
             margin-top: 2rem;
         }
         
+        .footer-tag {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-family: 'Urbanist', sans-serif;
+            font-weight: 900;
+            font-size: 1.5rem;
+            color: var(--tag-yellow);
+            transform: rotate(-10deg);
+            opacity: 0.7;
+        }
+        
         /* Responsive Design */
         @media (max-width: 992px) {
             .contact-container {
                 grid-template-columns: 1fr;
             }
             
-            .hero h1 {
+            .stencil-title {
                 font-size: 3.5rem;
+            }
+            
+            .stencil-subtitle {
+                font-size: 2rem;
             }
         }
         
@@ -547,17 +573,16 @@
                 display: none;
             }
             
-            .hero h1 {
+            .stencil-title {
                 font-size: 2.8rem;
             }
             
-            .hero p {
-                font-size: 1.2rem;
+            .stencil-subtitle {
+                font-size: 1.8rem;
             }
             
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
+            .hero p {
+                font-size: 1.1rem;
             }
             
             .section-title {
@@ -567,117 +592,91 @@
     </style>
 </head>
 <body>
-    <!-- Abstract Background -->
-    <div class="abstract-bg" id="abstract-bg"></div>
-    
-    <!-- Abstract Grid -->
-    <div class="abstract-grid" id="abstract-grid"></div>
-    
     <!-- Header -->
     <header>
-        <div class="logo">KarmaENT</div>
+        <div class="logo">KARMAENT</div>
         <nav class="nav-links">
             <a href="#home">Home</a>
-            <a href="#skills">Skills</a>
             <a href="#projects">Projects</a>
             <a href="#contact">Contact</a>
+            <a href="#about">About</a>
         </nav>
     </header>
     
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
-            <h1>Abstract Dimensions</h1>
-            <p>I craft digital experiences at the intersection of technology and abstract art. My work explores the boundaries of perception through innovative code and unconventional design.</p>
-            <div class="cta-buttons">
-                <a href="#projects" class="cta-button">
-                    <i class="fas fa-bolt"></i> Explore Projects
-                </a>
-                <a href="#contact" class="cta-button secondary">
-                    <i class="fas fa-paper-plane"></i> Contact Me
-                </a>
-            </div>
+            <h1 class="stencil-title">CODE GRAFFITI</h1>
+            <h2 class="stencil-subtitle">Digital Street Art</h2>
+            <p>I'm KarmaENT - a developer who treats code like urban art. My work blends technical precision with rebellious creativity, creating digital experiences that challenge conventions and leave a lasting impression. I operate at the intersection of technology and counterculture, where every line of code is a statement.</p>
+            <a href="#projects" class="cta-button">
+                <i class="fas fa-spray-can"></i> VIEW MY WORK
+            </a>
         </div>
-    </section>
-    
-    <!-- Skills Section -->
-    <section class="skills" id="skills">
-        <h2 class="section-title">Creative Expertise</h2>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <div class="skill-icon">
-                    <i class="fas fa-cube"></i>
-                </div>
-                <h3 class="skill-title">Generative Art</h3>
-                <p class="skill-description">Creating evolving abstract visuals using algorithms and parametric design principles.</p>
-            </div>
-            
-            <div class="skill-card">
-                <div class="skill-icon">
-                    <i class="fas fa-code"></i>
-                </div>
-                <h3 class="skill-title">Experimental Development</h3>
-                <p class="skill-description">Pushing web technologies to create unique interactive experiences.</p>
-            </div>
-            
-            <div class="skill-card">
-                <div class="skill-icon">
-                    <i class="fas fa-paint-brush"></i>
-                </div>
-                <h3 class="skill-title">Visual Design</h3>
-                <p class="skill-description">Designing interfaces that challenge conventional aesthetics and user expectations.</p>
-            </div>
-        </div>
+        
+        <!-- Graffiti Tags -->
+        <div class="graffiti-tag tag-1">REBEL CODE</div>
+        <div class="graffiti-tag tag-2">TECH ANARCHY</div>
+        <div class="graffiti-tag tag-3">DIGITAL VANDAL</div>
+        
+        <!-- Spray Paint Can -->
+        <div class="spray-can"></div>
     </section>
     
     <!-- Projects Section -->
     <section class="projects" id="projects">
-        <h2 class="section-title">Abstract Creations</h2>
+        <h2 class="section-title">URBAN PROJECTS</h2>
         <div class="projects-grid">
             <div class="project-card">
-                <div class="project-header"></div>
+                <div class="project-header">
+                    <i class="fas fa-city project-icon"></i>
+                </div>
                 <div class="project-content">
-                    <h3 class="project-title">Fractal Consciousness</h3>
-                    <p class="project-description">An interactive exploration of infinite patterns using recursive algorithms and WebGL rendering.</p>
+                    <h3 class="project-title">METROPOLIS API</h3>
+                    <p class="project-description">A decentralized API framework that mimics urban infrastructure patterns. Built for resilience and adaptability in hostile digital environments.</p>
                     <div class="project-tech">
-                        <span class="tech-tag">WebGL</span>
-                        <span class="tech-tag">GLSL</span>
-                        <span class="tech-tag">Three.js</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">Blockchain</span>
+                        <span class="tech-tag">Web3</span>
                     </div>
                     <a href="#" class="project-link">
-                        <i class="fas fa-external-link-alt"></i> View Project
+                        <i class="fas fa-spray-can"></i> View Project
                     </a>
                 </div>
             </div>
             
             <div class="project-card">
-                <div class="project-header"></div>
+                <div class="project-header">
+                    <i class="fas fa-paint-roller project-icon"></i>
+                </div>
                 <div class="project-content">
-                    <h3 class="project-title">Neural Abstractions</h3>
-                    <p class="project-description">AI-generated abstract art that evolves based on user interaction and environmental inputs.</p>
+                    <h3 class="project-title">STREET ART GENERATOR</h3>
+                    <p class="project-description">An AI-powered tool that creates digital graffiti based on user input. Uses generative adversarial networks to produce unique urban art.</p>
                     <div class="project-tech">
-                        <span class="tech-tag">TensorFlow.js</span>
-                        <span class="tech-tag">Canvas API</span>
-                        <span class="tech-tag">WebSockets</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">GAN</span>
+                        <span class="tech-tag">Canvas</span>
                     </div>
                     <a href="#" class="project-link">
-                        <i class="fas fa-external-link-alt"></i> View Project
+                        <i class="fas fa-spray-can"></i> View Project
                     </a>
                 </div>
             </div>
             
             <div class="project-card">
-                <div class="project-header"></div>
+                <div class="project-header">
+                    <i class="fas fa-route project-icon"></i>
+                </div>
                 <div class="project-content">
-                    <h3 class="project-title">Quantum Interfaces</h3>
-                    <p class="project-description">Experimental UI framework that applies quantum computing principles to interaction design.</p>
+                    <h3 class="project-title">UNDERGROUND ROUTER</h3>
+                    <p class="project-description">A privacy-focused routing system that mimics subway navigation patterns to obscure digital footprints and bypass surveillance.</p>
                     <div class="project-tech">
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">QuantumJS</span>
-                        <span class="tech-tag">Framer Motion</span>
+                        <span class="tech-tag">Rust</span>
+                        <span class="tech-tag">Tor</span>
+                        <span class="tech-tag">Encryption</span>
                     </div>
                     <a href="#" class="project-link">
-                        <i class="fas fa-external-link-alt"></i> View Project
+                        <i class="fas fa-spray-can"></i> View Project
                     </a>
                 </div>
             </div>
@@ -688,27 +687,27 @@
     <section class="contact" id="contact">
         <div class="contact-container">
             <div class="contact-info">
-                <h3 class="contact-title">Connect with Me</h3>
+                <h3 class="contact-title">CONTACT</h3>
                 
                 <div class="contact-detail">
                     <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
+                        <i class="fas fa-at"></i>
                     </div>
                     <div class="contact-text">contact@karmaent.dev</div>
                 </div>
                 
                 <div class="contact-detail">
                     <div class="contact-icon">
-                        <i class="fas fa-map-marker-alt"></i>
+                        <i class="fab fa-github"></i>
                     </div>
-                    <div class="contact-text">Digital Nomad • Global</div>
+                    <div class="contact-text">github.com/KarmaENT</div>
                 </div>
                 
                 <div class="contact-detail">
                     <div class="contact-icon">
-                        <i class="fas fa-code-branch"></i>
+                        <i class="fas fa-map-marker-alt"></i>
                     </div>
-                    <div class="contact-text">Exploring the edges of web technology</div>
+                    <div class="contact-text">The Digital Underground</div>
                 </div>
                 
                 <div class="social-links">
@@ -719,19 +718,19 @@
                         <i class="fab fa-twitter"></i>
                     </a>
                     <a href="#" class="social-link">
-                        <i class="fab fa-dribbble"></i>
+                        <i class="fab fa-instagram"></i>
                     </a>
                     <a href="#" class="social-link">
-                        <i class="fab fa-linkedin-in"></i>
+                        <i class="fab fa-discord"></i>
                     </a>
                 </div>
             </div>
             
             <div class="contact-info">
-                <h3 class="contact-title">Collaborate</h3>
-                <p style="margin-bottom: 2rem; color: rgba(240, 240, 240, 0.85);">I'm open to experimental projects, artistic collaborations, and pushing the boundaries of digital experiences. Let's create something extraordinary.</p>
+                <h3 class="contact-title">COLLABORATE</h3>
+                <p style="margin-bottom: 2rem; color: rgba(240, 240, 240, 0.85);">Looking for a developer who thinks outside the box? Let's create something that challenges the status quo. I specialize in unconventional solutions and boundary-pushing digital experiences.</p>
                 <a href="mailto:contact@karmaent.dev" class="cta-button">
-                    <i class="fas fa-paper-plane"></i> Send Message
+                    <i class="fas fa-spray-can"></i> SEND MESSAGE
                 </a>
             </div>
         </div>
@@ -739,127 +738,95 @@
     
     <!-- Footer -->
     <footer>
-        <div class="footer-logo">KarmaENT</div>
+        <div class="footer-logo">KARMAENT</div>
         <div class="copyright">
-            &copy; 2023 Abstract Dimensions. Crafted with <i class="fas fa-heart" style="color: var(--hot-pink);"></i> at the edge of digital art.
+            &copy; 2023 Digital Street Art Studio. All walls are canvases.
         </div>
+        <div class="footer-tag">CODE IS ART</div>
     </footer>
     
     <script>
-        // Create abstract background
-        function createAbstractBackground() {
-            const abstractBg = document.getElementById('abstract-bg');
+        // Create spray paint effect on mouse move
+        document.addEventListener('DOMContentLoaded', function() {
+            const colors = ['#ff1493', '#1e90ff', '#ffd700', '#00ff7f'];
+            let isPainting = false;
             
-            // Create abstract shapes
-            for (let i = 0; i < 12; i++) {
-                const shape = document.createElement('div');
-                shape.classList.add('abstract-shape');
+            document.addEventListener('mousedown', () => isPainting = true);
+            document.addEventListener('mouseup', () => isPainting = false);
+            
+            document.addEventListener('mousemove', function(e) {
+                if (!isPainting) return;
+                
+                const spray = document.createElement('div');
+                spray.style.position = 'fixed';
+                spray.style.pointerEvents = 'none';
+                spray.style.borderRadius = '50%';
+                spray.style.zIndex = '90';
                 
                 // Random size
-                const size = 200 + Math.random() * 400;
-                shape.style.width = `${size}px`;
-                shape.style.height = `${size}px`;
+                const size = 5 + Math.random() * 15;
+                spray.style.width = `${size}px`;
+                spray.style.height = `${size}px`;
                 
-                // Random position
-                shape.style.left = `${Math.random() * 100}%`;
-                shape.style.top = `${Math.random() * 100}%`;
+                // Random color
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                spray.style.background = color;
                 
-                // Random color gradient
-                const colors = [
-                    `radial-gradient(circle, var(--neon-purple), transparent 70%)`,
-                    `radial-gradient(circle, var(--hot-pink), transparent 70%)`,
-                    `radial-gradient(circle, var(--electric-blue), transparent 70%)`,
-                    `radial-gradient(circle, var(--sun-yellow), transparent 70%)`
-                ];
-                shape.style.background = colors[Math.floor(Math.random() * colors.length)];
+                // Position at mouse
+                spray.style.left = `${e.pageX - size/2}px`;
+                spray.style.top = `${e.pageY - size/2}px`;
                 
-                // Random animation
-                const animationDuration = 20 + Math.random() * 40;
-                shape.style.animation = `float ${animationDuration}s infinite ease-in-out`;
-                shape.style.animationDelay = `${Math.random() * 10}s`;
+                // Random opacity
+                spray.style.opacity = 0.7 + Math.random() * 0.3;
                 
-                abstractBg.appendChild(shape);
-            }
-        }
-        
-        // Create abstract grid
-        function createAbstractGrid() {
-            const abstractGrid = document.getElementById('abstract-grid');
-            
-            // Create grid items
-            for (let i = 0; i < 64; i++) {
-                const gridItem = document.createElement('div');
-                gridItem.classList.add('grid-item');
-                abstractGrid.appendChild(gridItem);
-            }
-            
-            // Add hover effect to grid items
-            const gridItems = document.querySelectorAll('.grid-item');
-            gridItems.forEach(item => {
-                item.addEventListener('mouseenter', () => {
-                    const colors = [
-                        'rgba(0, 245, 212, 0.1)',
-                        'rgba(155, 93, 229, 0.1)',
-                        'rgba(241, 91, 181, 0.1)',
-                        'rgba(254, 228, 64, 0.1)'
-                    ];
-                    const randomColor = colors[Math.floor(Math.random() * colors.length)];
-                    item.style.background = randomColor;
-                    item.style.transform = `scale(${0.8 + Math.random() * 0.4})`;
-                });
+                document.body.appendChild(spray);
                 
-                item.addEventListener('mouseleave', () => {
-                    item.style.background = '';
-                    item.style.transform = '';
-                });
+                // Remove after animation
+                setTimeout(() => {
+                    spray.style.transition = 'transform 0.5s, opacity 1.5s';
+                    spray.style.transform = `scale(${1 + Math.random() * 2})`;
+                    spray.style.opacity = '0';
+                    
+                    setTimeout(() => {
+                        if (spray.parentNode) spray.parentNode.removeChild(spray);
+                    }, 1500);
+                }, 100);
             });
-        }
-        
-        // Floating animation for abstract shapes
-        function floatAnimation() {
-            const shapes = document.querySelectorAll('.abstract-shape');
             
-            shapes.forEach(shape => {
-                // Random float movement
-                const keyframes = `
-                    @keyframes float {
-                        0% { transform: translate(0, 0) rotate(0deg); }
-                        25% { transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px) rotate(${Math.random() * 90}deg); }
-                        50% { transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px) rotate(${Math.random() * 180}deg); }
-                        75% { transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px) rotate(${Math.random() * 270}deg); }
-                        100% { transform: translate(0, 0) rotate(${Math.random() * 360}deg); }
-                    }
-                `;
-                
-                const style = document.createElement('style');
-                style.innerHTML = keyframes;
-                document.head.appendChild(style);
-            });
-        }
-        
-        // Initialize everything when the page loads
-        window.addEventListener('DOMContentLoaded', () => {
-            createAbstractBackground();
-            createAbstractGrid();
-            floatAnimation();
-        });
-        
-        // Add scroll effect to grid items
-        window.addEventListener('scroll', () => {
-            const gridItems = document.querySelectorAll('.grid-item');
-            const scrollY = window.scrollY;
-            
-            gridItems.forEach((item, index) => {
-                const row = Math.floor(index / 8);
-                const col = index % 8;
-                
-                // Create a wave effect based on position
-                const offset = (row * 50 + col * 20 + scrollY * 0.1) % 100;
-                const scale = 0.9 + Math.sin(offset * 0.1) * 0.1;
-                
-                item.style.transform = `scale(${scale})`;
-                item.style.opacity = 0.3 + Math.abs(Math.sin(offset * 0.05)) * 0.7;
-            });
+            // Animated spray can effect
+            const can = document.querySelector('.spray-can');
+            setInterval(() => {
+                if (Math.random() > 0.7) {
+                    const spray = document.createElement('div');
+                    spray.style.position = 'absolute';
+                    spray.style.pointerEvents = 'none';
+                    spray.style.borderRadius = '50% 50% 0 50%';
+                    
+                    // Position at spray can nozzle
+                    const rect = can.getBoundingClientRect();
+                    spray.style.left = `${rect.left + 35}px`;
+                    spray.style.top = `${rect.top - 10}px`;
+                    
+                    // Random size
+                    const size = 30 + Math.random() * 50;
+                    spray.style.width = `${size}px`;
+                    spray.style.height = `${size * 0.7}px`;
+                    
+                    // Color
+                    spray.style.background = 'rgba(255, 20, 147, 0.2)';
+                    
+                    // Animation
+                    spray.style.transition = 'all 1s';
+                    spray.style.transform = 'translateY(-100px) scale(1.5)';
+                    spray.style.opacity = '0';
+                    
+                    document.body.appendChild(spray);
+                    
+                    setTimeout(() => {
+                        if (spray.parentNode) spray.parentNode.removeChild(spray);
+                    }, 1000);
+                }
+            }, 1500);
         });
     </script>
 </body>
